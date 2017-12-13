@@ -55,9 +55,9 @@ STATE_LOGGED_IN = 2
 
 pp = pprint.PrettyPrinter(indent=4)
 
-class Ftpy(object):
+class Ftp(object):
 	""" 
-	The Ftpy class
+	The Ftp class
 
     Arguments: <host-identifier> <user-account-identifier>
 
@@ -404,8 +404,9 @@ class Ftpy(object):
 		self.session_handle.expect(self.prompt)
 
 if __name__ == '__main__':
+	# from ftpy.tools import Ftp
 
-	with Ftpy('ftp_sftp_test_server','ftptest') as ftp:
+	with Ftp('ftp_sftp_test_server','ftptest') as ftp:
 		ftp.system()
 		ftp.status()
 		ftp.pwd()
