@@ -1,0 +1,78 @@
+!	Escape to the Shell
+$	Execute macro
+?	print local help information
+account	Send account command to remote server
+append	Append to a file
+ascii	set ascii transfer type
+beep	beep when command completed
+binary	Set Binary transfer type
+bye	Terminate ftp session and exit
+case	toggle mget upper/lower case id mapping
+cd	Change remote working directory
+cdup	change remote working directory to parent directory
+chmod	Change file permissions of remote file
+close	Terminate FTP session
+cr	toggle carriage return stripping on ascii gets
+debug	toggle/set debugging mode
+delete	delete remote file
+dir	list contents of remote directory
+disconnect	terminate ftp session
+exit	terminate ftp sessions and exit
+form	set file transfer format
+get	receive file
+glob	toggle meta character expansion of local file names
+hash	toggle printing `#' for each buffer transferred
+help	display local help information
+idle	get (set) idle timer on remote side
+image	set binary transfer type
+ipany	allow use of any address family
+ipv4	restrict address usage to ipv4
+ipv6	restrict address usage to ipv6
+lcd	Change local working directory
+ls	list contents of remote directory
+macdef	define a macro
+mdelete	delete multiple files
+mdir	list contents of multiple remote directories
+mget	get multiple files
+mkdir	make directory on remote machine
+mls	list contents of multiple remote directories
+mode	set file transfer mode
+modtime	show last modification time of remote file
+mput	send multiple files
+newer	get file if remote file is newer than local file
+nlist	nlist contents of remote directory
+nmap	set templates for default file name mapping
+ntrans	set translation table for default file name mapping
+open	connect to remote ftp
+passive	enter passive transfer mode
+prompt	force interactive prompting on multiple commands
+proxy	issue command on an alternate connection
+put	send one file
+pwd	print working directory on remote machine
+qc	print ? in place of control characters on stdout
+quit	terminate ftp session and exit
+quote	send arbitrary ftp command
+recv	receive file
+reget	get file restarting at end of local file
+rename	rename file
+reset	clear queued command replies
+restart	restart file transfer at bytecount
+rhelp	get help from remote server
+rmdir	remove directory on remote machine
+rstatus	show status of remote machine
+runique	toggle store unique for local files
+send	send one file
+sendport	toggle use of PORT cmd for each data connection
+site	send site specific command to remote server
+size	show size of remote file
+status	show current status
+struct	set file transfer structure
+sunique	toggle store unique on remote machine
+system	show remote system type
+tenex	set tenex file transfer type
+tick	toggle printing byte counter during transfers
+trace	toggle packet tracing
+type	set file transfer type
+umask	get (set) umask on remote site
+user	send new user information
+verbose	toggle verbose mode
