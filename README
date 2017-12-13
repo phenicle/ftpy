@@ -1,0 +1,3 @@
+A python FTP module that supports pythonic idioms (e.g. withiness).
+
+Against our will, we had to build a python SFTP module to address deficiencies (support for mget) with existing ones. Might as well include FTP and provide a consistent behavior. Enjoy!

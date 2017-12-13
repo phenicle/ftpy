@@ -11,7 +11,7 @@ Passwords shouldn't be embedded in source code. Ideally, passwords should be pro
 
 That's how it *should* work, so that's how ftpy *does* work.
 
-The sftpy password file:
+The ftpy password file:
 
 1. ~/.ftpy/.creds
 2. Lines contain three colon-delimited fields: <host>:<user>:<password>

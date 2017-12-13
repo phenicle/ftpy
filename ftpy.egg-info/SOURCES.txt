@@ -1,0 +1,11 @@
+LICENSE.txt
+MANIFEST.in
+README
+setup.py
+ftpy/__init__.py
+ftpy/ftpy.py
+ftpy.egg-info/PKG-INFO
+ftpy.egg-info/SOURCES.txt
+ftpy.egg-info/dependency_links.txt
+ftpy.egg-info/requires.txt
+ftpy.egg-info/top_level.txt

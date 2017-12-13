@@ -1,0 +1,11 @@
+Metadata-Version: 1.0
+Name: ftpy
+Version: 1.0.0
+Summary: A python FTP module that supports pythonic idioms.
+Home-page: https://github.com/phenicle/ftpy
+Author: Phenicle
+Author-email: pheniclebeefheart@gmail.com
+License: LGPLv3
+Description-Content-Type: UNKNOWN
+Description: Against our will, we had to build a python SFTP module to address deficiencies (support for mget) with existing ones. Might as well include FTP and provide a consistent behavior. Enjoy!
+Platform: UNKNOWN
