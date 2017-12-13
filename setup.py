@@ -7,13 +7,13 @@ with open("README", 'r') as f:
 
 setup(
    name='ftpy',
-   version='1.0.1',
+   version='1.0.3',
    description='A python FTP module that supports pythonic idioms.',
    license="LGPLv3",
    long_description='Against our will, we had to build a python SFTP module to address deficiencies (support for mget) with existing ones. Might as well include FTP and provide a consistent behavior. Enjoy!',
    author='Phenicle',
    author_email='pheniclebeefheart@gmail.com',
    url="https://github.com/phenicle/ftpy",
-   packages=['ftpy'],  #same as name
+   packages=['ftpy',],  #same as name
    install_requires=['pexpect'], #external packages as dependencies
 )

@@ -3,7 +3,7 @@ MANIFEST.in
 README
 setup.py
 ftpy/__init__.py
-ftpy/ftpy.py
+ftpy/tools.py
 ftpy.egg-info/PKG-INFO
 ftpy.egg-info/SOURCES.txt
 ftpy.egg-info/dependency_links.txt

@@ -27,10 +27,12 @@ ftp_test_server:ftpuser:thisisnotarealpassword
 ### Pythonic idioms
 
 ```python
-  with Ftpy('ftp_test_server','ftpuser') as ftp:
-      ftp.system()
-      ftp.status()
-      ftp.pwd()
-      ftp.ls()
-      ftp.bye()
+from ftpy.tools import Ftp
+
+with Ftp('ftp_test_server','ftpuser') as ftp:
+    ftp.system()
+    ftp.status()
+    ftp.pwd()
+    ftp.ls()
+    ftp.bye()
 ````
