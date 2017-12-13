@@ -138,7 +138,7 @@ class Ftpy(object):
 		"""
 		self.program = find_executable('ftp')
 		if not self.program:
-			raise FileNotFoundError(
+			raise IOError(
     			errno.ENOENT, 
     			os.strerror(errno.ENOENT), 
     			'ftp'
