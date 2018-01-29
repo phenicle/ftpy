@@ -29,6 +29,7 @@ import re
 import pprint
 from distutils.spawn import find_executable
 import errno
+from cfgpy.tools import FMT_INI, CfgPy
 
 DEBUGGING = False
 
@@ -59,7 +60,39 @@ class Ftp(object):
 	""" 
 	The Ftp class
 
-    Arguments: <host-identifier> <user-account-identifier>
+    Argument list for the object ctor (__init__).
+    We now support two different ways of initializing/configuring new objects.
+    
+    1. native (secure)
+
+    Arguments:  <arg1> <arg2>
+
+     where 
+      <arg1> := host (string)
+      <arg2> := user (string)
+
+    2. cfgpy
+
+    Arguments: <arg1> <arg2>
+
+     where
+      <arg1> := a CfgPy object
+      <arg2> := a dictionary having this form:
+
+       { 
+        'host': <cfgpy-keypath-tuple>,
+        'user': <cfgpy-keypath-tuple>,
+        'password': <cfgpy-keypath-tuple> 
+       }
+
+      where <cfgpy-keypath-tuple> is a tuple of keys 
+      used to uniquely identify the location of the desired
+      configuration element within the cfg dict contained
+      in the CfgPy object.
+
+   Native secure configuration
+
+     Arguments <host-identifier>, <user-account-identifier>
 
      where 
 
@@ -80,11 +113,7 @@ class Ftp(object):
       <host-identifier>:<user-identifier>:<password>
 
 	"""
-	def __init__(self, host, user):
-
-		if DEBUGGING:
-			print "host: %s" % (host)
-			print "user: %s" % (user)
+	def __init__(self, arg1, arg2):
 
 		"""
 		Default values are documented here 
@@ -102,18 +131,36 @@ class Ftp(object):
 		self.mode = MODE_BINARY
 		self.state = STATE_START
 
-		self.host = host
-		self.user = user
+		if type(arg1).__name__ == 'CfgPy':
+			# arg2 must be dict containig host, user, password keys
+			cfgobj = arg1
+			host_element_path_tuple = arg2['host']
+			user_element_path_tuple = arg2['user']
+			password_element_path_tuple = arg2['password']
+			self.host = cfgobj.read_element(host_element_path_tuple)
+			self.user = cfgobj.read_element(user_element_path_tuple)
+			self.password = cfgobj.read_element(password_element_path_tuple)
+		else:
+			host = arg1
+			user = arg2
+			self.host = host
+			self.user = user
+			if not self.get_credentials():
+				raise ValueError(
+					"failed to find password;\n No env var '%s', no creds file at %s" \
+				   	% (self.credvarname, self.creds_filespec)
+					)
+				sys.exit(1)
+
 		if not self.locate_ftp_client_program():
 			raise ValueError('failed to locate FTP client program')
 			sys.exit(1)
-		if not self.get_credentials():
-			raise ValueError(
-				"failed to find password;\n No env var '%s', no creds file at %s" \
-				   % (self.credvarname, self.creds_filespec)
-				)
-		else:
-			self.login()
+
+		if DEBUGGING:
+			print "host: %s" % (self.host)
+			print "user: %s" % (self.user)
+	
+		self.login()
 	
 	def __enter__(self):
 
@@ -404,11 +451,29 @@ class Ftp(object):
 		self.session_handle.expect(self.prompt)
 
 if __name__ == '__main__':
+
 	# from ftpy.tools import Ftp
 
+	cfgobj = CfgPy(FMT_INI, '/Users/spl/project/incoming/ftpy/ftpy', ['./test.conf'])
+	#cfgobj.set_file_extension('conf')
+	cfgobj.load()
+	print "host: {}".format(cfgobj.read_element(('ftpcredentials','host')))
+	print "user: {}".format(cfgobj.read_element(('ftpcredentials','user')))
+	print "password: {}".format(cfgobj.read_element(('ftpcredentials','password')))
+
+	with Ftp(cfgobj, { 
+		'host': ('ftpcredentials','host'), 
+		'user': ('ftpcredentials','user'),
+		'password': ('ftpcredentials','password')
+		 }) as ftp:
+
+		pass
+
+	"""
 	with Ftp('ftp_sftp_test_server','ftptest') as ftp:
 		ftp.system()
 		ftp.status()
 		ftp.pwd()
 		ftp.ls()
 		ftp.bye()
+	"""
