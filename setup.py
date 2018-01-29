@@ -15,5 +15,5 @@ setup(
    author_email='pheniclebeefheart@gmail.com',
    url="https://github.com/phenicle/ftpy",
    packages=['ftpy',],  #same as name
-   install_requires=['pexpect'], #external packages as dependencies
+   install_requires=['pexpect', 'cfgpy'], #external packages as dependencies
 )
