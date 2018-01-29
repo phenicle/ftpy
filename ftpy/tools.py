@@ -454,7 +454,7 @@ if __name__ == '__main__':
 
 	# from ftpy.tools import Ftp
 
-	cfgobj = CfgPy(FMT_INI, '/Users/spl/project/incoming/ftpy/ftpy', ['./test.conf'])
+	cfgobj = CfgPy(FMT_INI, '.', ['./test.conf'])
 	#cfgobj.set_file_extension('conf')
 	cfgobj.load()
 	print "host: {}".format(cfgobj.read_element(('ftpcredentials','host')))
@@ -467,7 +467,11 @@ if __name__ == '__main__':
 		'password': ('ftpcredentials','password')
 		 }) as ftp:
 
-		pass
+		ftp.system()
+		ftp.status()
+		ftp.pwd()
+		ftp.ls()
+		ftp.bye()
 
 	"""
 	with Ftp('ftp_sftp_test_server','ftptest') as ftp:
